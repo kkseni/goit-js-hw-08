@@ -27,6 +27,7 @@ function createImageMarkup(galleryItems) {
 
 var lightbox = new SimpleLightbox('.gallery a', {
     captionData: "alt",
+    captionDelay: 250,
 
 });
 
