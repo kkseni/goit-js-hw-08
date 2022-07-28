@@ -24,9 +24,9 @@ function onFormSubmit(evt) {
 
 }
 function initForm() {
-    const savedEmail = localStorage.getItem('STORAGE_KEY')
+    let savedEmail = localStorage.getItem('STORAGE_KEY')
     if (savedEmail) {
-        console.log(savedEmail);
+        savedEmail = JSON.parse(savedData);
         refs.input.value = savedEmail;
         for (const [name,value] of Object.entries(savedData)) {
             formElements[name].value=value;
