@@ -3,15 +3,18 @@ const refs = {
     form: document.querySelector('.feedback-form'),
 }
 const STORAGE_KEY = 'feedback-form-state';
-const formData = {};
+
 
 refs.form.addEventListener('submit', throttle(onFormSubmit,500));
 refs.form.addEventListener('input', evt => {
-    if (localStorage.getItem('STORAGE_KEY') === null) {
-        formData[evt.target.name] = evt.target.value;
+    let savedData= localStorage.getItem('STORAGE_KEY')
+    if (!savedData) {
+        savedData = {}
     }
-    else 
-    localStorage.getItem('STORAGE_KEY', form.elements.message.value)   
+    else
+        savedData[evt.target.name] = evt.target.value;
+    
+    localStorage.setItem('feedback-form-state', JSON.stringify(savedData))   
 
 })
 function onFormSubmit(evt) {
@@ -25,12 +28,12 @@ function initForm() {
     if (savedEmail) {
         console.log(savedEmail);
         refs.input.value = savedEmail;
-        for (const [name,value] of Object.entries(formData)) {
+        for (const [name,value] of Object.entries(savedData)) {
             formElements[name].value=value;
 }}
 }
 try {
-  const data = JSON.parse(formData);
+  const data = JSON.parse(savedData);
 } catch (error) {
   console.log(error.name); 
   console.log(error.message); 
