@@ -11,7 +11,6 @@ refs.form.addEventListener('input', evt => {
     if (!savedData) {
         savedData = {}
     }
-    else
         savedData[evt.target.name] = evt.target.value;
     
     localStorage.setItem('feedback-form-state', JSON.stringify(savedData))   
@@ -27,14 +26,9 @@ function initForm() {
     let savedEmail = localStorage.getItem('STORAGE_KEY')
     if (savedEmail) {
         savedEmail = JSON.parse(savedData);
-        refs.input.value = savedEmail;
-        for (const [name,value] of Object.entries(savedData)) {
-            formElements[name].value=value;
-}}
-}
-try {
-  const data = JSON.parse(savedData);
-} catch (error) {
-  console.log(error.name); 
-  console.log(error.message); 
+        
+        for (const [name, value] of Object.entries(savedData)) {
+            refs.form.elements[name].value = value;
+        }
+    }
 }
