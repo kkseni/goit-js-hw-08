@@ -3,6 +3,7 @@ const refs = {
     form: document.querySelector('.feedback-form'),
 }
 const STORAGE_KEY = 'feedback-form-state';
+ initForm()
 refs.form.addEventListener('submit',onFormSubmit);
 refs.form.addEventListener('input', throttle( evt => {
     let savedData = localStorage.getItem('STORAGE_KEY')
